@@ -1,0 +1,114 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color-black , 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+
+    &__content {
+        width: 75%;
+        background-color: $color-white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% ,-50%) scale(0);
+        box-shadow: 0 2rem 4rem rgba($color-black , 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        opacity: 0;
+        display: table;
+        transition: all 0.5s 0.2s;
+
+        @include respond(tab-land) {
+            width: 80%; 
+        }
+
+        @include respond(phone) {
+            width: 90%;
+            display: block;
+        }
+    }
+
+    &__left {
+        width: 33.3333333%;
+        display: table-cell;
+
+        @include respond(tab-land) {
+            width: 100%;
+            display: inline-block; 
+        }
+    }
+
+    &__right {
+        width: 66.6666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+
+        @include respond(tab-land) {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        display: block;
+
+        @include respond(tab-land) {
+            width: 50%;
+            float: left;
+        }
+    }
+
+    &__text {
+        font-size: 1.4rem;
+
+        column-count: 2;
+        column-gap: 4rem;
+        column-rule: 1px solid $color-grey-light-2;
+
+        -webkit-hyphens: auto;
+        hyphens: auto;
+
+        @include respond(phone) {
+            column-count: 1;
+        }
+    }
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        transform: translate(-50% ,-50%)  scale(1);
+        opacity: 1;
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+        font-size: 4rem;
+        position: absolute;
+        top: 2.5rem;
+        right: 2.5rem;
+        line-height: 1;
+        color: $color-grey-dark;
+        text-decoration: none;
+        transition: all 0.2s;
+        }
+
+        &:hover,
+        &:active {
+            color: $color-primary;
+            transform: scale(1.3);
+        }
+
+    }
+}
